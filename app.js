@@ -1,8 +1,12 @@
 const express = require('express')
 const app = express()
+const cors = require('cors')
 const port = 3000
 
-// iomprot route files 
+// cors
+app.use(cors()); 
+
+// import route files 
 const apiRouter = require('./routes/api.js')
 
 app.use("/api", apiRouter); 
