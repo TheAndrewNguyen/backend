@@ -3,14 +3,14 @@ const app = express()
 const port = 3000
 
 // iomprot route files 
-const testRouter = require('./routes/test.js')
+const apiRouter = require('./routes/api.js')
 
-app.use("/test", testRouter); 
+app.use("/api", apiRouter); 
 
 app.get('/', (req, res) => {
-  res.send('Hello World!')
+  res.send('Server is up')
 })
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+  console.log(`Listening on port ${port}`)
 })
