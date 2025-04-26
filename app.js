@@ -5,7 +5,9 @@ const port = 3000
 
 // cors
 app.use(cors({
-  origin: '*'
+  origin: '*',           // allow all origins
+  methods: '*',          // allow all HTTP methods
+  allowedHeaders: '*'    // allow all headers
 }));
 
 // import route files 
