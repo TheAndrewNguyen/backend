@@ -16,12 +16,17 @@ const getBasicInfo = async(req, res) => {
         const {name, electionDay} = election; 
         
                  
-        const regestration_link = stateData[0].electionAdministrationBody.electionRegistrationUrl;
+        const adminBody = stateData[0].electionAdministrationBody;
+        const electionInfo = adminBody.electionInfoUrl; 
+        const regestration_link = adminBody.electionRegistrationUrl; 
+
         console.log(regestration_link);  
 
         console.log(`===ELECTION QUERY FOR: ${address} ===`)
         console.log("Election name: " + name); 
         console.log("Election day: " + electionDay)
+        console.log("Election Info: " + electionInfo)
+        console.log("Regestration Link " + regestration_link); 
         
 
         res.status(200).json(
@@ -29,7 +34,7 @@ const getBasicInfo = async(req, res) => {
                 "address": address, 
                 "date": electionDay, 
                 "name": name, 
-                "regDead": "5/5/2025", 
+                "electionInfo": electionInfo, 
                 "regLink": regestration_link
             }
     )

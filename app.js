@@ -4,7 +4,9 @@ const cors = require('cors')
 const port = 3000
 
 // cors
-app.use(cors()); 
+app.use(cors({
+  origin: '*'
+}));
 
 // import route files 
 const apiRouter = require('./routes/api.js')
