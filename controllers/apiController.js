@@ -5,13 +5,21 @@ const getCivicInfo = require("../service/civicInfo")
 const getBasicInfo = async(req, res) => {
     try {
         const address = req.params.address; 
-        //console.log(getCivicInfo.fetchElectionsData()); 
+        const cleanAddress = address.startsWith(":") ? address.slice(1) : address;
 
-        res.status(500).json(
+        const result = await getCivicInfo.fetchElectionsData(cleanAddress); 
+
+        const {election} = result; 
+        
+        const {name, electionDay} = election; 
+        console.log(name); 
+        console.log(electionDay)
+
+        res.status(200).json(
             {
                 "address": address, 
-                "date": "5/6/2025", 
-                "name": "Seattle General Election", 
+                "date": electionDay, 
+                "name": name, 
                 "regDead": "5/5/2025", 
                 "regLink": "https://seattle.gov/"
             }
