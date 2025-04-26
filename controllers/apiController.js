@@ -9,11 +9,20 @@ const getBasicInfo = async(req, res) => {
 
         const result = await getCivicInfo.fetchElectionsData(cleanAddress); 
 
-        const {election} = result; 
-        
+        const {election, state} = result; 
+        const stateData = state; 
+
+        // name of election and election day info 
         const {name, electionDay} = election; 
-        console.log(name); 
-        console.log(electionDay)
+        
+                 
+        const regestration_link = stateData[0].electionAdministrationBody.electionRegistrationUrl;
+        console.log(regestration_link);  
+
+        console.log(`===ELECTION QUERY FOR: ${address} ===`)
+        console.log("Election name: " + name); 
+        console.log("Election day: " + electionDay)
+        
 
         res.status(200).json(
             {
@@ -21,7 +30,7 @@ const getBasicInfo = async(req, res) => {
                 "date": electionDay, 
                 "name": name, 
                 "regDead": "5/5/2025", 
-                "regLink": "https://seattle.gov/"
+                "regLink": regestration_link
             }
     )
     } catch {
