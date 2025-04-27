@@ -9,7 +9,9 @@ const getBasicInfo = async(req, res) => {
 
         const result = await getCivicInfo.fetchElectionsData(cleanAddress); 
 
-        const {election, state} = result; 
+        const {election, state, pollingLocations} = result; 
+
+        // state data 
         const stateData = state; 
 
         // name of election and election day info 
@@ -20,6 +22,8 @@ const getBasicInfo = async(req, res) => {
         const electionInfo = adminBody.electionInfoUrl; 
         const regestration_link = adminBody.electionRegistrationUrl; 
 
+        const pollingHours = pollingLocations[0].pollingHours; 
+        
         console.log(regestration_link);  
 
         console.log(`===ELECTION QUERY FOR: ${address} ===`)
@@ -35,7 +39,8 @@ const getBasicInfo = async(req, res) => {
                 "date": electionDay, 
                 "name": name, 
                 "electionInfo": electionInfo, 
-                "regLink": regestration_link
+                "regLink": regestration_link,
+                "pollingHours": pollingHours
             }
     )
     } catch {
